@@ -1,6 +1,6 @@
 # Project Variable
 PROJECT_NAME ?= todobackend
-ORG_NAME ?= myang
+ORG_NAME ?= mengqingyang
 REPO_NAME ?= todobackend
 
 # File Variable
@@ -30,6 +30,7 @@ release:
 
 clean:
 	docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) kill
-	docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) rm -f
+	docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) rm -f -v
 	docker-compose -p $(REL_PROJECT) -f $(RELEASE_COMPOSE_FILE) kill
-	docker-compose -p $(REL_PROJECT) -f $(RELEASE_COMPOSE_FILE) rm -f
+	docker-compose -p $(REL_PROJECT) -f $(RELEASE_COMPOSE_FILE) rm -f -v
+	docker images -q -f dangling=true -f label=application=$(REPO_NAME) | xargs -I ARGS docker rmi -f ARGS

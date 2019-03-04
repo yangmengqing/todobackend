@@ -1,4 +1,4 @@
-FROM myang/todobackend-base:latest
+FROM mengqingyang/todobackend-base:latest
 MAINTAINER Mengqing Yang
 
 RUN apt-get update && \

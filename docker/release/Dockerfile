@@ -1,4 +1,4 @@
-FROM myang/todobackend-base:latest
+FROM mengqingyang/todobackend-base:latest
 MAINTAINER Mengqing Yang
 
 COPY target /wheelhouse
