@@ -1,1 +1,15 @@
+appenv
+
 env
+
+*.pyc
+
+*.sqlite3
+
+src/.coverage
+src/*.xml
+
+src/*egg-info
+
+target/
+reports/
