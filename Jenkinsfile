@@ -22,7 +22,7 @@ pipeline {
 
     post {
         always {
-            step([$class: 'JUnitResultArchiver', testResults: 'parts/test/testreports/*.xml'])
+            step([$class: 'JUnitResultArchiver', testResults: '**/reports/*.xml'])
         }
 
         cleanup {
