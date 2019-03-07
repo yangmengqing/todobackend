@@ -23,18 +23,16 @@ test:
   links: 
     - nginx
   environment: 
-    url: http://nginx:8000/todos
+    URL: http://nginx:8000/todos
     JUNIT_REPORT_PATH: /reports/acceptance.xml
     JUNIT_REPORT_STACK: 1
-  command: 
-    - "--reporter mocha-jenkins-reporter"
+  command: --reporter mocha-jenkins-reporter
 
 nginx:
-  image: nginx
+  build: .
+  dockerfile: Dockerfile.nginx
   links: 
     - app
-  volumes: 
-    - ./todobackend.conf:/etc/nginx/conf.d/todobackend.conf
   ports: 
     - "8000:8000"
   volumes_from: 
@@ -49,13 +47,12 @@ webroot:
 
 agent:
   image: mengqingyang/ansible
-  volumes:
-    - ../../ansible/probe.yml:/ansible/site.yml
   links:
     - db
   environment:
     PROBE_HOST: "db"
     PROBE_PORT: "3306"
+  command: ["probe.yml"]
 
 db:
   image: mysql:5.6

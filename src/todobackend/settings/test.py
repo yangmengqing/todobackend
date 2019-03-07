@@ -12,9 +12,9 @@ NOSE_ARGS = [
     '--with-spec',
     '--spec-color',
     '--with-xunit',
-    '--xunit-file=/unittests.xml',
+    '--xunit-file=%s/unittests.xml' % TEST_OUTPUT_DIR,
     '--cover-xml',
-    '--cover-xml-file=/coverage.xml',
+    '--cover-xml-file=%s/coverage.xml' %TEST_OUTPUT_DIR,
 ]
 
 DATABASES = {
