@@ -1,15 +1,32 @@
 pipeline {
     agent any
     stages {
-        /*stage('Checkout') {
-            steps {
-                git 'git@github.com:yangmengqing/todobackend.git'
-            }
-        }*/
-        stage('Test Make') {
+        stage('Run Unit Tests') {
             steps {
                 sh 'make test'
             }
+        }
+
+        stage('Build application artifacts') {
+            steps {
+                sh 'make build'
+            }
+        }
+
+        stage('Create release environment and run acceptance test') {
+            steps {
+                sh 'make release'
+            }
+        }
+    }
+
+    post {
+        always {
+            junit '**/reports/*.xml'
+        }
+
+        cleanup {
+            sh 'make clean'
         }
     }
 }
